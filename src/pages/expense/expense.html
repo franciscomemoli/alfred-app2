@@ -1,0 +1,36 @@
+<!--
+  Generated template for the ExpensePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>expense</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  {{expense.valid}}
+  <form (ngSubmit)="save()" [formGroup]="expense">
+    <ion-item>
+      <ion-label>Categoría</ion-label>
+      <ion-select  [compareWith]="compareObject" formControlName="category">
+        <ion-option *ngFor="let category of categories" [value]="category" >{{category.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea  formControlName="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total</ion-label>
+      <ion-input type="number"  formControlName="total"></ion-input>
+    </ion-item>
+
+    <button ion-button type="submit" block>Guardar</button>
+  </form>
+</ion-content>

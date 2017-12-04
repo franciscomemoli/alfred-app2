@@ -3,16 +3,28 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Dashboard</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <h3 *ngIf="group">Grupo seleccionado: {{group.name}}</h3>
+  <button ion-button small>Cambiar de grupo</button>
+  <div *ngIf="group">
+    <ion-card *ngFor="let account of group.accounts">
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+      <ion-card-header>
+        {{account.name}}
+      </ion-card-header>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+      <ion-card-content>
+        Balance ${{account.total}}
+      </ion-card-content>
+
+    </ion-card>
+  </div>
+  <div>
+    <button (click)="goToIncome()" ion-button outline>Income</button>
+    <button (click)="goToExpense()" ion-button >Expense</button>
+  </div>
 </ion-content>
